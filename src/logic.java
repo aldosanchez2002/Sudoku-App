@@ -36,25 +36,30 @@ public class logic {
 
 
     boolean solvable(int[][] board) {
+        // loops through puzzle looking for 0s
         for (int row = 0; row < 9; row++) {
             for (int column = 0; column < 9; column++) {
                 if (board[row][column] == 0) {
+                    // check numbers 1-9
                     for (int numberToTry = 1; numberToTry <= 9; numberToTry++) {
                         if (isValidNumber(board, numberToTry, row, column)) {
                             board[row][column] = numberToTry;
-
+                            //RECURSION
                             if (solvable(board)) {
                                 return true;
                             }
+                            //set to 0
                             else {
                                 board[row][column] = 0;
                             }
                         }
                     }
+                    // no solution
                     return false;
                 }
             }
         }
+        //no 0s left
         return true;
     }
 
