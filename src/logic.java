@@ -1,8 +1,22 @@
+import java.util.*;
+
 public class logic {
-    /*
+    public static void main(String[] args) {
+        int[][] input = new int[9][9];
+        Scanner scan = new Scanner(System.in);
+        int row;
+        for(int n=1;n<=9;n++){
+        System.out.println("Enter row "+n+ " of your sudoku with 0s for spaces EX: 001002605");
+        row = scan.nextInt();
+            for(int i=1;i<=9;i++){
+            ///////////////////////
+            }
+        }
+    }
+    /*example
         {
-        {7, 0, 2, 0, 5, 0, 6, 0, 0},   r=1 c=4 c=3(c/3) r-=r%3
-        {0, 0, 0, 0, '0', 3, 0, 0, 0},
+        {7, 0, 2, 0, 5, 0, 6, 0, 0},
+        {0, 0, 0, 0, 0, 3, 0, 0, 0},
         {1, 0, 0, 0, 0, 9, 5, 0, 0},
         {8, 0, 0, 0, 0, 0, 0, 9, 0},
         {0, 4, 3, 0, 0, 0, 7, 5, 0},
@@ -12,11 +26,24 @@ public class logic {
         {0, 0, 7, 0, 4, 0, 2, 0, 3}
         }
     */
-    int[][] Solver(int[][] input){
-
+     int[][] solution= new int[9][9];
+     void Solver(int[][] input){
+        if(solvable(input)) {
+            for (int row = 0; row < 9; row++) {
+                if (row % 3 == 0) System.out.print("-------------\n");
+                for (int column = 0; column < 9; column++) {
+                    if (column % 3 == 0) System.out.print("| ");
+                    System.out.print(input[row][column] + " ");
+                }
+                System.out.print("\n");
+            }
+        }else{{
+        System.out.println("This Puzzle is not solvable");
+        }
+        }
     }
 
-    boolean isValidNumber(int[][] input, int test, int row, int column){
+     boolean isValidNumber(int[][] input, int test, int row, int column){
         //check if int is valid
         if(test>9 || test<1)return false;
         //check column
@@ -35,7 +62,7 @@ public class logic {
     }
 
 
-    boolean solvable(int[][] board) {
+     boolean solvable(int[][] board) {
         // loops through puzzle looking for 0s
         for (int row = 0; row < 9; row++) {
             for (int column = 0; column < 9; column++) {
@@ -60,6 +87,7 @@ public class logic {
             }
         }
         //no 0s left
+        solution = board;
         return true;
     }
 
