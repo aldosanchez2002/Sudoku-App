@@ -33,4 +33,29 @@ public class logic {
                 if(input[r][c]==test)return false; } }
         return true;
     }
+
+
+    boolean solvable(int[][] board) {
+        for (int row = 0; row < 9; row++) {
+            for (int column = 0; column < 9; column++) {
+                if (board[row][column] == 0) {
+                    for (int numberToTry = 1; numberToTry <= 9; numberToTry++) {
+                        if (isValidNumber(board, numberToTry, row, column)) {
+                            board[row][column] = numberToTry;
+
+                            if (solvable(board)) {
+                                return true;
+                            }
+                            else {
+                                board[row][column] = 0;
+                            }
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }
