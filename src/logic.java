@@ -3,11 +3,21 @@ import java.util.*;
 public class logic {
     public static void main(String[] args) {
         int[][] input = new int[9][9];
+        String temp;
         Scanner scan = new Scanner(System.in);
         for (int r = 0; r < 9; r++)
             for (int c = 0; c < 9; c++) {
                 System.out.println("Enter number for row " + (r+1) + " column " + (c+1));
-                input[r][c] = scan.nextInt();
+                temp=scan.next();
+                while(temp.length()>1){
+                    System.out.println("Not a valid number please try again");
+                    temp=scan.next();
+                }
+                while(temp.charAt(0)>'9' || temp.charAt(0)<'0'){
+                    System.out.println("Not a valid number please try again");
+                    temp =scan.next();
+                }
+                input[r][c] = Integer.parseInt(temp);
             }
         solver(input);
     }
