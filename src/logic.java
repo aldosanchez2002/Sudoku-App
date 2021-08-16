@@ -18,26 +18,19 @@ public class logic {
 
     boolean isValidNumber(int[][] input, int test, int row, int column){
         //check if int is valid
-        if(test>9 || test<0)return false;
-
+        if(test>9 || test<1)return false;
         //check column
         for(int[] i : input){
-            if (i[column] == test) return false;
-        }
-
+            if (i[column] == test) return false;}
         //check row
         for(int i : input[row]){
-            if (i == test) return false;
-        }
-
-        //check 3x3 square
+            if (i == test) return false;}
+        //check 3x3 square start top left
         row -= row%3;
         column-=column%3;
         for(int r=row; r < row+3;r++){
             for(int c=column; c <column+3;c++){
-                if(input[r][c]==test)return false;
-            }
-        }
+                if(input[r][c]==test)return false; } }
         return true;
     }
 }
